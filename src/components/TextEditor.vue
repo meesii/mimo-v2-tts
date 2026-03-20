@@ -235,7 +235,7 @@ defineExpose({ example_popover })
 
 <template>
   <!-- 语音切换 + 风格标签工具栏 -->
-  <div class="mb-4 sm:mb-5 flex flex-col sm:flex-row sm:items-stretch sm:justify-between gap-2 relative z-50">
+  <div class="mb-4 sm:mb-5 flex flex-col sm:flex-row sm:items-stretch sm:justify-between gap-2 relative z-30">
     <SelectButton
       v-model="tts_config.voice"
       :options="voice_options"
@@ -246,7 +246,7 @@ defineExpose({ example_popover })
       @update:model-value="save_config"
     />
 
-    <div ref="toolbar_ref" class="flex items-center gap-1 glass-panel rounded-xl px-1.5 py-1 shadow-sm overflow-x-auto scrollbar-none">
+    <div ref="toolbar_ref" class="flex items-center gap-1 glass-panel rounded-xl px-1.5 py-1 shadow-sm overflow-visible scrollbar-none">
       <template v-for="(key, idx) in style_keys" :key="key">
         <span v-if="idx > 0" class="w-px h-4 bg-surface-700 shrink-0"></span>
         <div class="relative">

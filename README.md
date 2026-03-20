@@ -4,6 +4,8 @@
 
 演示站点：https://mimo-tts.meesii.com
 
+![效果图](screenshot/demo.png)
+
 ## 技术栈
 
 - Vue 3 + Vite

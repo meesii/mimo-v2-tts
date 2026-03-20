@@ -1,0 +1,364 @@
+@import 'tailwindcss';
+@import 'tailwindcss-primeui';
+@import 'primeicons/primeicons.css';
+@import './assets/fonts/MiSans/fonts.css';
+@import "tailwindcss/utilities";
+
+@plugin '@iconify/tailwind4';
+
+@custom-variant dark (&:where(.app-dark, .app-dark *));
+
+@theme {
+    --text-10: 10px;
+    --text-11: 11px;
+    --text-12: 12px;
+    --text-13: 13px;
+    --text-14: 14px;
+    --text-15: 15px;
+    --text-16: 16px;
+
+    /**
+     * 阴影 — 仅用于高浮层元素
+     * 日常层级用色调分层（glass-panel）替代
+     */
+    --shadow-toast: rgba(19, 27, 46, 0.12) 0px 8px 24px;
+    --shadow-card: rgba(19, 27, 46, 0.03) 0px 2px 8px;
+    --shadow-dropdown: rgba(19, 27, 46, 0.06) 0px 12px 32px;
+    --shadow-brand: rgba(79, 70, 229, 0.2) 0px 4px 16px;
+}
+
+:root {
+    color-scheme: dark;
+    --font-headline: 'Manrope', 'MiSans', sans-serif;
+    --font-body: 'Inter', 'MiSans', sans-serif;
+}
+
+.app-dark {
+    --scrollbar-track-bg: #18181b;
+    --scrollbar-thumb-bg: #3f3f46;
+    --scrollbar-thumb-hover-bg: #52525b;
+    --scrollbar-thumb-active-bg: #71717a;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    height: 100%;
+    margin: 0 auto;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--p-surface-950);
+    background-image:
+        linear-gradient(to right, var(--p-surface-900) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--p-surface-900) 1px, transparent 1px);
+    background-size: 40px 40px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    overflow-y: auto;
+    color: var(--p-text-color);
+}
+
+*::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-bg);
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    background-color: var(--scrollbar-thumb-bg);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover-bg);
+}
+
+*::-webkit-scrollbar-thumb:active {
+    background-color: var(--scrollbar-thumb-active-bg);
+}
+
+img {
+    -webkit-user-drag: none;
+}
+
+@layer utilities {
+    .font-headline {
+        font-family: var(--font-headline);
+    }
+
+    .font-body {
+        font-family: var(--font-body);
+    }
+}
+
+@layer components {
+    /**
+     * 深色毛玻璃面板 — 核心视觉语言
+     * 半透明深色背景 + 模糊 + 微弱亮边
+     */
+    .glass-panel {
+        background: color-mix(in srgb, var(--p-surface-800) 40%, transparent);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        border: 1px solid color-mix(in srgb, var(--p-surface-600) 40%, transparent);
+    }
+
+    .glass-panel-strong {
+        background: color-mix(in srgb, var(--p-surface-800) 60%, transparent);
+        backdrop-filter: blur(48px);
+        -webkit-backdrop-filter: blur(48px);
+        border: 1px solid color-mix(in srgb, var(--p-surface-600) 40%, transparent);
+    }
+
+    /** 编辑器聚焦光晕（柔和微光，避免视觉干扰） */
+    .editor-glow:focus-within {
+        box-shadow: 0 0 0 1px rgba(165, 160, 255, 0.06);
+    }
+}
+
+/** 背景光球动画 */
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(100px, 50px) scale(1.1); }
+}
+
+.orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    opacity: 0.35;
+    animation: float 20s ease-in-out infinite alternate;
+}
+
+/** 状态指示灯脉冲 */
+@keyframes ping-dot {
+    75%, 100% { transform: scale(2); opacity: 0; }
+}
+
+.animate-ping-dot {
+    animation: ping-dot 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/**
+ * PrimeVue Select 组件在毛玻璃工具栏中的悬停效果
+ */
+.toolbar-select .p-select:hover {
+    background: var(--p-content-hover-background);
+}
+
+/**
+ * 风格标签弹出层 — 深色毛玻璃
+ */
+.style-popover {
+    background: color-mix(in srgb, var(--p-surface-900) 85%, transparent);
+    backdrop-filter: blur(24px) saturate(1.4);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    border: 1px solid color-mix(in srgb, var(--p-surface-600) 40%, transparent);
+}
+
+/**
+ * 音色切换按钮组 — 通过全局 pt 注入 class
+ */
+.voice-group {
+    background: color-mix(in srgb, var(--p-surface-800) 40%, transparent);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid color-mix(in srgb, var(--p-surface-600) 40%, transparent);
+    border-radius: 0.75rem;
+    padding: 3px;
+}
+
+.voice-btn {
+    background: transparent !important;
+    border-color: transparent !important;
+    color: var(--p-text-muted-color) !important;
+}
+
+.voice-btn .p-togglebutton-content {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.voice-btn:hover {
+    background: transparent !important;
+    color: var(--p-text-color) !important;
+}
+
+.voice-btn:hover .p-togglebutton-content {
+    background: var(--p-content-hover-background) !important;
+}
+
+.voice-btn-active {
+    background: transparent !important;
+    color: var(--p-text-color) !important;
+    border-color: transparent !important;
+}
+
+.voice-btn-active .p-togglebutton-content {
+    background: color-mix(in srgb, var(--p-surface-700) 60%, transparent) !important;
+    box-shadow: none !important;
+}
+
+/**
+ * 风格标签按钮悬停高亮
+ */
+.style-tag-btn:hover {
+    background: var(--p-content-hover-background) !important;
+    border-color: var(--p-primary-color) !important;
+}
+
+/**
+ * 风格分类按钮 — 与音色按钮视觉统一
+ * 未选中：muted 文字，选中：亮文字 + 半透明背景
+ */
+.style-category-btn.p-button-secondary {
+    color: var(--p-text-muted-color) !important;
+    background: transparent !important;
+}
+
+.style-category-btn.p-button-secondary:hover {
+    color: var(--p-text-color) !important;
+    background: var(--p-content-hover-background) !important;
+}
+
+.style-category-btn.p-button-primary {
+    color: var(--p-text-color) !important;
+    background: color-mix(in srgb, var(--p-surface-700) 60%, transparent) !important;
+}
+
+/**
+ * Tiptap 编辑器基础样式
+ */
+.tiptap-editor {
+    outline: none;
+    min-height: 360px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 2.2;
+    color: var(--p-text-color);
+}
+
+.tiptap-editor p {
+    margin: 0 0 0.5em;
+}
+
+.tiptap-editor p.is-editor-empty:first-child::before {
+    content: '在此输入或粘贴你的文本…\A点击上方风格标签插入样式控制';
+    white-space: pre-wrap;
+    color: var(--p-text-muted-color);
+    pointer-events: none;
+    float: left;
+    height: 0;
+}
+
+/**
+ * 风格标签节点 — 编辑器内的标签气泡，点击可编辑
+ */
+.style-tag-node {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 10px;
+    margin: 0 2px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.75;
+    color: var(--p-primary-color);
+    background: rgba(var(--p-primary-500), 0.12);
+    background: color-mix(in srgb, var(--p-primary-color) 15%, transparent);
+    border: 1px solid color-mix(in srgb, var(--p-primary-color) 30%, transparent);
+    user-select: none;
+    vertical-align: middle;
+    transform: translateY(-1px);
+    cursor: pointer;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.style-tag-node:hover {
+    border-color: color-mix(in srgb, var(--p-primary-color) 50%, transparent);
+}
+
+/**
+ * 风格标签编辑态 — 高亮边框 + 允许选中文字
+ */
+.style-tag-node.style-tag-editing {
+    user-select: text;
+    cursor: text;
+    outline: none;
+    border-color: var(--p-primary-color);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--p-primary-color) 20%, transparent);
+}
+
+/**
+ * 风格标签内嵌编辑 input — 无缝融入气泡
+ */
+.style-tag-input {
+    all: unset;
+    font: inherit;
+    color: inherit;
+    min-width: 2em;
+    caret-color: var(--p-primary-color);
+}
+
+/**
+ * 隐藏测量 span — 与 input 同字体，用于驱动自适应宽度
+ */
+.style-tag-sizer {
+    position: absolute;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    white-space: pre;
+    font: inherit;
+}
+
+/**
+ * 风格标签弹出层淡入淡出过渡
+ */
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+    transform: translateY(-4px);
+}
+
+.fade-enter-to,
+.fade-leave-from {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/** Slider 手柄交互：悬停时显示 */
+.player-slider .p-slider-handle {
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.player-slider:hover .p-slider-handle {
+    opacity: 1;
+}
+
+/**
+ * Dialog 遮罩层毛玻璃效果（主题 token 不支持 backdrop-filter）
+ */
+.dark-dialog-mask {
+    backdrop-filter: blur(4px);
+}

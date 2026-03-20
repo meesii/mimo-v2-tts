@@ -21,6 +21,19 @@ const show_settings = ref(false)
         rounded
         v-tooltip.bottom="'历史记录'"
       /> -->
+      <a
+        href="https://github.com/meesii/mimo-v2-tts"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Button
+          icon="pi pi-github"
+          severity="secondary"
+          text
+          rounded
+          v-tooltip.bottom="'GitHub'"
+        />
+      </a>
       <Button
         icon="pi pi-cog"
         severity="secondary"

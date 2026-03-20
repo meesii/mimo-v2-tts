@@ -147,7 +147,7 @@ onBeforeUnmount(cleanup_audio)
 </script>
 
 <template>
-  <div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 w-full max-w-2xl px-6">
+  <div class="fixed bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-50 w-full max-w-2xl px-4 sm:px-6">
     <div class="relative glass-panel-strong rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-3 pl-4 flex items-center gap-4">
       <button
         class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-surface-700 hover:bg-surface-600

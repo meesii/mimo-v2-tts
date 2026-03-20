@@ -111,8 +111,17 @@ app.use(PrimeVue, {
             }
         },
         dialog: {
-            mask: { class: 'dark-dialog-mask' }
-        }
+            mask: {
+                style: {
+                    backdropFilter: 'blur(4px)',
+                    WebkitBackdropFilter: 'blur(4px)',
+                },
+            },
+            pcCloseButton: {
+                /* 修复弹窗显示时关闭按钮触发:focus-visible 样式的问题  */
+                root: { class: 'focus:shadow-none! focus:outline-none!' },
+            },
+        },
     }
 });
 app.use(ConfirmationService);

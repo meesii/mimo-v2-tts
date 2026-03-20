@@ -6,11 +6,11 @@ const show_settings = ref(false)
 </script>
 
 <template>
-  <nav class="fixed top-0 w-full z-50 px-8 py-2.5 flex justify-between items-center glass-panel-strong border-b border-surface-700">
-    <div class="flex items-center gap-2.5">
-      <img src="/favicon.svg" alt="MiMo TTS" class="w-9 h-9" />
-      <span class="text-xl font-bold tracking-tight text-primary font-headline">MiMo TTS</span>
-      <Tag value="AI语音合成" class="ml-1 px-3 rounded-full" rounded />
+  <nav class="fixed top-0 w-full z-50 px-4 sm:px-8 py-2.5 flex justify-between items-center glass-panel-strong border-b border-surface-700">
+    <div class="flex items-center gap-2">
+      <img src="/favicon.svg" alt="MiMo TTS" class="w-8 h-8 sm:w-9 sm:h-9" />
+      <span class="text-lg sm:text-xl font-bold tracking-tight text-primary font-headline">MiMo TTS</span>
+      <Tag value="AI语音合成" class="ml-1 px-3 rounded-full hidden sm:inline-flex" rounded />
     </div>
 
     <div class="flex items-center gap-1">

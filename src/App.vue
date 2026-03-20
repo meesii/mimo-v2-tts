@@ -55,9 +55,9 @@ const handle_generate = async (text, voice) => {
 
     <AppNav />
 
-    <main class="pt-24 pb-40 px-6">
+    <main class="pt-20 sm:pt-24 pb-32 sm:pb-40 px-4 sm:px-6">
       <div class="max-w-4xl mx-auto">
-        <header class="text-center mb-12 space-y-4">
+        <header class="text-center mb-8 sm:mb-12 space-y-3 sm:space-y-4">
           <Tag rounded>
             <template #default>
               <span class="relative flex h-2 w-2 mr-2">
@@ -67,11 +67,11 @@ const handle_generate = async (text, voice) => {
               AI 语音合成引擎就绪
             </template>
           </Tag>
-          <h1 class="text-5xl font-extrabold tracking-tight font-headline text-color">
+          <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight font-headline text-color">
             文字，化为
             <span class="text-transparent bg-clip-text bg-linear-to-r from-primary to-primary-300">声音</span>
           </h1>
-          <p class="text-lg max-w-xl mx-auto text-muted-color">
+          <p class="text-sm sm:text-lg max-w-xl mx-auto text-muted-color">
             基于 MiMo TTS 引擎，将文本转化为自然流畅的语音。支持多音色切换与情感风格标签，轻松定制你的专属声音。
           </p>
         </header>

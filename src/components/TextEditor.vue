@@ -235,33 +235,34 @@ defineExpose({ example_popover })
 
 <template>
   <!-- 语音切换 + 风格标签工具栏 -->
-  <div class="mb-5 flex flex-wrap items-stretch justify-between gap-2 relative z-50">
+  <div class="mb-4 sm:mb-5 flex flex-col sm:flex-row sm:items-stretch sm:justify-between gap-2 relative z-50">
     <SelectButton
       v-model="tts_config.voice"
       :options="voice_options"
       option-label="label"
       option-value="value"
       :allow-empty="false"
+      class="self-start"
       @update:model-value="save_config"
     />
 
-    <div ref="toolbar_ref" class="flex items-center gap-1 glass-panel rounded-xl px-1.5 py-1 shadow-sm">
+    <div ref="toolbar_ref" class="flex items-center gap-1 glass-panel rounded-xl px-1.5 py-1 shadow-sm overflow-x-auto scrollbar-none">
       <template v-for="(key, idx) in style_keys" :key="key">
         <span v-if="idx > 0" class="w-px h-4 bg-surface-700 shrink-0"></span>
-        <div class="relative ">
+        <div class="relative">
           <Button
             :icon="style_config[key].icon"
             :label="style_config[key].label"
             size="small"
             text
             :severity="expanded_category === key ? 'primary' : 'secondary'"
-            class="style-category-btn"
+            class="style-category-btn whitespace-nowrap"
             @click="toggle_category(key)"
           />
           <Transition name="fade">
             <div
               v-if="expanded_category === key"
-              class="absolute top-full left-0 mt-2 z-50 style-popover rounded-xl p-2 flex flex-wrap gap-1.5 min-w-max shadow-lg"
+              class="absolute top-full left-0 sm:left-0 right-auto mt-2 z-50 style-popover rounded-xl p-2 flex flex-wrap gap-1.5 min-w-max shadow-lg"
             >
               <Button
                 v-for="tag in style_config[key].tags"
@@ -283,8 +284,8 @@ defineExpose({ example_popover })
   <!-- 编辑器主体 -->
   <div class="relative">
     <div class="glass-panel rounded-4xl shadow-2xl overflow-hidden transition-colors duration-300 focus-within:border-primary/40">
-      <div class="p-6 min-h-[320px] flex flex-col">
-        <EditorContent :editor="editor" class="flex-1 w-full min-h-[200px] max-h-[400px] overflow-y-auto" />
+      <div class="p-4 sm:p-6 min-h-[260px] sm:min-h-[320px] flex flex-col">
+        <EditorContent :editor="editor" class="flex-1 w-full min-h-[160px] sm:min-h-[200px] max-h-[400px] overflow-y-auto" />
 
         <div class="pt-4 border-t border-surface-700 flex justify-between items-center mt-4">
           <div class="flex items-center gap-2">
@@ -335,13 +336,13 @@ defineExpose({ example_popover })
   </div>
 
   <!-- 示例文本弹出面板 -->
-  <Popover ref="example_popover" class="style-popover w-[480px]">
+  <Popover ref="example_popover" class="style-popover w-[calc(100vw-2rem)] sm:w-[480px]">
     <div class="p-3 space-y-2 max-h-[360px] overflow-y-auto">
       <div class="flex items-center justify-between mb-1 px-1">
         <span class="text-13 font-semibold text-surface-300">示例文本</span>
         <span class="text-11 text-surface-500">点击填入编辑器</span>
       </div>
-      <div class="grid grid-cols-2 gap-2">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
         <div
           v-for="scene in example_scenes"
           :key="scene.title"

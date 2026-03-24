@@ -72,7 +72,7 @@ const handle_generate = async (text, voice) => {
             <span class="text-transparent bg-clip-text bg-linear-to-r from-primary to-primary-300">声音</span>
           </h1>
           <p class="text-sm sm:text-lg max-w-xl mx-auto text-muted-color">
-            基于 MiMo TTS 引擎，将文本转化为自然流畅的语音。支持多音色切换与情感风格标签，轻松定制你的专属声音。
+            基于小米 MiMo-v2-TTS 引擎，将文本转化为自然流畅的语音。支持多音色切换与情感风格标签，轻松定制你的专属声音。
           </p>
         </header>
 
